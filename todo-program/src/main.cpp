@@ -77,9 +77,7 @@ string getProjectName(void) {
 void createTodoFolder() {
   string documentPath = getDocumentDirectoryPath();
 
-  if (filesystem::exists(documentPath)) {
-    cout << "file already exists" << '\n';
-  } else {
+  if (!filesystem::exists(documentPath)) {
     filesystem::create_directory(documentPath);
   }
 }
