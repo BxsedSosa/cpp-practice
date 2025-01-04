@@ -33,7 +33,7 @@ string getFile(void) {
   return fileName.str();
 }
 
-void getFilePath(void) {
+string getDocumentDirectoryPath() {
   fs::path currentPath = fs::current_path();
 
   stringstream path(currentPath);
@@ -46,6 +46,9 @@ void getFilePath(void) {
 
   string home = brokenPaths[1];
   string user = brokenPaths[2];
+  string documentPath = "/" + home + "/" + user + "/" + "Documents";
+
+  return documentPath;
 }
 
 string getProjectName(void) {
@@ -66,6 +69,16 @@ void createNewProject(string projectName) {
   outputfile.close();
 }
 
+void createTodoFolder() {
+  string documentPath = getDocumentDirectoryPath() + "/todo";
+
+  if (filesystem::exists(documentPath)) {
+    cout << "file already exists" << '\n';
+  } else {
+    filesystem::create_directory(documentPath);
+  }
+}
+
 void readFile(string fileName) {
   ifstream file(fileName);
   string line;
@@ -81,7 +94,7 @@ void readFile(string fileName) {
 }
 
 int main(void) {
-  getFilePath();
+  createTodoFolder();
   string userAnswer = mainMenu();
 
   if (userAnswer == "1") {
