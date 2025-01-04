@@ -20,6 +20,20 @@ string mainMenu(void) {
   return userAnswer;
 }
 
+void readFile(string fileName) {
+  ifstream file(fileName);
+  string line;
+
+  if (file.is_open()) {
+    while (getline(file, line)) {
+      cout << line << '\n';
+    }
+    file.close();
+  } else {
+    cerr << "Unable to open file";
+  }
+}
+
 string getFile(void) {
   string name;
 
@@ -60,16 +74,6 @@ string getProjectName(void) {
   return projectName;
 }
 
-void createNewProject(string projectName) {
-  string filePath = getDocumentDirectoryPath();
-  stringstream fileName;
-  fileName << filePath << projectName << ".md";
-
-  ofstream outputfile(fileName.str());
-  outputfile << "# " + projectName << '\n';
-  outputfile.close();
-}
-
 void createTodoFolder() {
   string documentPath = getDocumentDirectoryPath();
 
@@ -80,22 +84,18 @@ void createTodoFolder() {
   }
 }
 
-void readFile(string fileName) {
-  ifstream file(fileName);
-  string line;
+void createNewProject(string projectName) {
+  createTodoFolder();
+  string filePath = getDocumentDirectoryPath();
+  stringstream fileName;
+  fileName << filePath << projectName << ".md";
 
-  if (file.is_open()) {
-    while (getline(file, line)) {
-      cout << line << '\n';
-    }
-    file.close();
-  } else {
-    cerr << "Unable to open file";
-  }
+  ofstream outputfile(fileName.str());
+  outputfile << "# " + projectName << '\n';
+  outputfile.close();
 }
 
 int main(void) {
-  createTodoFolder();
   string userAnswer = mainMenu();
 
   if (userAnswer == "1") {
