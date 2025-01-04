@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -6,6 +7,7 @@
 #include <vector>
 
 using namespace std;
+namespace fs = std::filesystem;
 
 string mainMenu(void) {
   string userAnswer;
@@ -31,6 +33,21 @@ string getFile(void) {
   return fileName.str();
 }
 
+void getFilePath(void) {
+  fs::path currentPath = fs::current_path();
+
+  stringstream path(currentPath);
+  vector<std::string> brokenPaths;
+  std::string brokenPath;
+
+  while (getline(path, brokenPath, '/')) {
+    brokenPaths.push_back(brokenPath);
+  }
+
+  string home = brokenPaths[1];
+  string user = brokenPaths[2];
+}
+
 string getProjectName(void) {
   string projectName;
   cout << "Creating a new 'to-do' project" << '\n';
@@ -40,7 +57,7 @@ string getProjectName(void) {
   return projectName;
 }
 
-void createFile(string projectName) {
+void createNewProject(string projectName) {
   stringstream fileName;
   fileName << projectName << ".md";
 
@@ -64,11 +81,12 @@ void readFile(string fileName) {
 }
 
 int main(void) {
+  getFilePath();
   string userAnswer = mainMenu();
 
   if (userAnswer == "1") {
     string projectName = getProjectName();
-    createFile(projectName);
+    createNewProject(projectName);
   }
 
   if (userAnswer == "2") {
