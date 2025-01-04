@@ -46,7 +46,7 @@ string getDocumentDirectoryPath() {
 
   string home = brokenPaths[1];
   string user = brokenPaths[2];
-  string documentPath = "/" + home + "/" + user + "/" + "Documents";
+  string documentPath = "/" + home + "/" + user + "/" + "Documents/todos/";
 
   return documentPath;
 }
@@ -61,8 +61,9 @@ string getProjectName(void) {
 }
 
 void createNewProject(string projectName) {
+  string filePath = getDocumentDirectoryPath();
   stringstream fileName;
-  fileName << projectName << ".md";
+  fileName << filePath << projectName << ".md";
 
   ofstream outputfile(fileName.str());
   outputfile << "# " + projectName << '\n';
@@ -70,7 +71,7 @@ void createNewProject(string projectName) {
 }
 
 void createTodoFolder() {
-  string documentPath = getDocumentDirectoryPath() + "/todo";
+  string documentPath = getDocumentDirectoryPath();
 
   if (filesystem::exists(documentPath)) {
     cout << "file already exists" << '\n';
