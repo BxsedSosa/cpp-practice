@@ -11,6 +11,9 @@ public:
   }
 
   int getScreenWidth() { return screenWidth; }
+  int getHalfScreenWidth() { return screenWidth / 2; }
+  int getScreenHeight() { return screenHeight; }
+  int getHalfScreenHeight() { return screenHeight / 2; }
 
 private:
   const int screenHeight = 720;

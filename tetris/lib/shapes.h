@@ -15,3 +15,5 @@ private:
       {0, 0, 0, 0},
   };
 };
+
+class Tetramino {};
