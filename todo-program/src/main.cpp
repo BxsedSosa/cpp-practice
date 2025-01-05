@@ -34,19 +34,6 @@ void readFile(string fileName) {
   }
 }
 
-string getFile(void) {
-  string name;
-
-  cout << "Edit a 'to-do' project" << '\n';
-  cout << '\n' << "Please enter name of project" << '\n' << ">> ";
-  cin >> name;
-
-  stringstream fileName;
-  fileName << name << ".md";
-
-  return fileName.str();
-}
-
 string getDocumentDirectoryPath() {
   fs::path currentPath = fs::current_path();
 
@@ -63,6 +50,20 @@ string getDocumentDirectoryPath() {
   string documentPath = "/" + home + "/" + user + "/" + "Documents/todos/";
 
   return documentPath;
+}
+
+string getFile(void) {
+  string documentPath = getDocumentDirectoryPath();
+  string name;
+
+  cout << "Edit a 'to-do' project" << '\n';
+  cout << '\n' << "Please enter name of project" << '\n' << ">> ";
+  cin >> name;
+
+  stringstream fileName;
+  fileName << documentPath << "/" << name << ".md";
+
+  return fileName.str();
 }
 
 string getProjectName(void) {
