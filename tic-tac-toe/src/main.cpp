@@ -1,9 +1,13 @@
+#include <cstdlib>
 #include <iostream>
+#include <stdlib.h>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 using namespace std;
+
+void clearConsole() { system("clear || cls"); }
 
 vector<vector<char>> createMap() {
   vector<vector<char>> map = {
@@ -57,11 +61,12 @@ bool validatePlayerSelection(string playerSelection) {
 string getPlayerSelection() {
   string playerSelection;
 
-  system("clear");
+  clearConsole();
   cout << "Please make a selection between 1 - 9:\n";
   cin >> playerSelection;
 
   while (validatePlayerSelection(playerSelection)) {
+    clearConsole();
     cout << playerSelection
          << " is not a valid input!\nPlease make a selection between 1 - 9:\n";
     cin >> playerSelection;
