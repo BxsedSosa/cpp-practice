@@ -21,6 +21,26 @@ vector<vector<char>> createMap() {
   return map;
 }
 
+// Validate
+
+bool validatePlayerSelection(string playerSelection) {
+  int numberSelected;
+  try {
+    numberSelected = stoi(playerSelection);
+  } catch (invalid_argument &err) {
+    return true;
+  }
+  return numberSelected <= 0 || numberSelected > 9;
+}
+
+bool checkUsedSelection(vector<vector<char>> map, vector<int> corrdinates) {
+  int rowCorr = corrdinates[0];
+  int colCorr = corrdinates[1];
+  char locationsChar = map[rowCorr][colCorr];
+
+  return locationsChar == 'x' || locationsChar == 'o';
+}
+
 // Map
 
 unordered_map<string, vector<int>> createGridMap() {
@@ -56,6 +76,7 @@ void changeMap(vector<vector<char>> &map, vector<int> corrdinates,
                bool isPlayer) {
   int rowCorr = corrdinates[0];
   int colCorr = corrdinates[1];
+
   if (isPlayer) {
     map[rowCorr][colCorr] = 'x';
   } else {
@@ -70,16 +91,6 @@ vector<int> getCorrdinates(string playerSelection) {
 }
 
 // Player
-
-bool validatePlayerSelection(string playerSelection) {
-  int numberSelected;
-  try {
-    numberSelected = stoi(playerSelection);
-  } catch (invalid_argument &err) {
-    return true;
-  }
-  return numberSelected <= 0 || numberSelected > 9;
-}
 
 string getPlayerSelection() {
   string playerSelection;
@@ -100,11 +111,7 @@ string getPlayerSelection() {
 
 int main() {
   vector<vector<char>> gridMap = createMap();
-  unordered_map<string, vector<int>> mapping = createGridMap();
   string playerSelection = getPlayerSelection();
-
-  cout << "selection: " << mapping[playerSelection][0] << ", "
-       << mapping[playerSelection][1] << '\n';
 
   changeMap(gridMap, getCorrdinates(playerSelection), true);
   displayMap(gridMap);
