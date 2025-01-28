@@ -126,6 +126,14 @@ string getPlayerSelection(vector<vector<char>> gridMap) {
   return playerSelection;
 }
 
+// CPU
+
+vector<int> getCpuSelection() {
+  string cpuSelection;
+
+  return getCorrdinates(cpuSelection);
+}
+
 // Main
 
 int main() {
