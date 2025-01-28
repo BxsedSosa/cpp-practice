@@ -44,13 +44,36 @@ void displayMap(vector<vector<char>> grid) {
   }
 }
 
+bool validatePlayerSelection(string playerSelection) {
+  int numberSelected;
+  try {
+    numberSelected = stoi(playerSelection);
+  } catch (invalid_argument &err) {
+    return true;
+  }
+  return numberSelected <= 0 || numberSelected > 9;
+}
+
+string getPlayerSelection() {
+  string playerSelection;
+
+  system("clear");
+  cout << "Please make a selection between 1 - 9:\n";
+  cin >> playerSelection;
+
+  while (validatePlayerSelection(playerSelection)) {
+    cout << playerSelection
+         << " is not a valid input!\nPlease make a selection between 1 - 9:\n";
+    cin >> playerSelection;
+  }
+
+  return playerSelection;
+}
+
 int main() {
   vector<vector<char>> grid = createMap();
   unordered_map<string, vector<int>> mapping = createGridMap();
-  string playerSelection;
-
-  cout << "Please make a selection:\n";
-  cin >> playerSelection;
+  string playerSelection = getPlayerSelection();
 
   cout << "selection: " << mapping[playerSelection][0] << ", "
        << mapping[playerSelection][1] << '\n';
