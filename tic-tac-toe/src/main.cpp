@@ -7,6 +7,8 @@
 
 using namespace std;
 
+// Utility
+
 void clearConsole() { system("clear || cls"); }
 
 vector<vector<char>> createMap() {
@@ -18,6 +20,8 @@ vector<vector<char>> createMap() {
 
   return map;
 }
+
+// Map
 
 unordered_map<string, vector<int>> createGridMap() {
   unordered_map<string, vector<int>> mapping;
@@ -47,6 +51,8 @@ void displayMap(vector<vector<char>> grid) {
     }
   }
 }
+
+// Player
 
 bool validatePlayerSelection(string playerSelection) {
   int numberSelected;
