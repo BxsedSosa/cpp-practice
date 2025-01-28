@@ -23,17 +23,17 @@ vector<vector<char>> createMap() {
 
 // Validate
 
-bool validatePlayerSelection(string playerSelection) {
+bool validateUserInput(string userSelection) {
   int numberSelected;
   try {
-    numberSelected = stoi(playerSelection);
+    numberSelected = stoi(userSelection);
   } catch (invalid_argument &err) {
     return true;
   }
   return numberSelected <= 0 || numberSelected > 9;
 }
 
-bool checkUsedSelection(vector<vector<char>> map, vector<int> corrdinates) {
+bool validateUsedSelection(vector<vector<char>> map, vector<int> corrdinates) {
   int rowCorr = corrdinates[0];
   int colCorr = corrdinates[1];
   char locationsChar = map[rowCorr][colCorr];
@@ -92,28 +92,51 @@ vector<int> getCorrdinates(string playerSelection) {
 
 // Player
 
-string getPlayerSelection() {
+string getPlayerSelection(vector<vector<char>> gridMap) {
   string playerSelection;
 
   clearConsole();
+  displayMap(gridMap);
   cout << "Please make a selection between 1 - 9:\n";
   cin >> playerSelection;
 
-  while (validatePlayerSelection(playerSelection)) {
+  if (playerSelection == "exit") {
+    return playerSelection;
+  }
+
+  while (validateUserInput(playerSelection) ||
+         validateUsedSelection(gridMap, getCorrdinates(playerSelection))) {
     clearConsole();
-    cout << playerSelection
-         << " is not a valid input!\nPlease make a selection between 1 - 9:\n";
-    cin >> playerSelection;
+
+    if (validateUserInput(playerSelection)) {
+      displayMap(gridMap);
+      cout
+          << playerSelection
+          << " is not a valid input!\nPlease make a selection between 1 - 9:\n";
+      cin >> playerSelection;
+    } else {
+      displayMap(gridMap);
+      cout << playerSelection
+           << " is already used input!\nPlease make a seleection between 1 - "
+              "9:\n";
+      cin >> playerSelection;
+    }
   }
 
   return playerSelection;
 }
 
-int main() {
-  vector<vector<char>> gridMap = createMap();
-  string playerSelection = getPlayerSelection();
+// Main
 
-  changeMap(gridMap, getCorrdinates(playerSelection), true);
-  displayMap(gridMap);
+int main() {
+  bool running = true;
+  vector<vector<char>> gridMap = createMap();
+  string playerSelection;
+
+  while (running) {
+    playerSelection = getPlayerSelection(gridMap);
+    changeMap(gridMap, getCorrdinates(playerSelection), true);
+  }
+  clearConsole();
   return 0;
 }
