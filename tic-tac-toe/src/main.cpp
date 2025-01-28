@@ -52,6 +52,23 @@ void displayMap(vector<vector<char>> grid) {
   }
 }
 
+void changeMap(vector<vector<char>> &map, vector<int> corrdinates,
+               bool isPlayer) {
+  int rowCorr = corrdinates[0];
+  int colCorr = corrdinates[1];
+  if (isPlayer) {
+    map[rowCorr][colCorr] = 'x';
+  } else {
+    map[rowCorr][colCorr] = 'o';
+  }
+}
+
+vector<int> getCorrdinates(string playerSelection) {
+  unordered_map<string, vector<int>> selectionMap = createGridMap();
+
+  return selectionMap[playerSelection];
+}
+
 // Player
 
 bool validatePlayerSelection(string playerSelection) {
@@ -82,13 +99,14 @@ string getPlayerSelection() {
 }
 
 int main() {
-  vector<vector<char>> grid = createMap();
+  vector<vector<char>> gridMap = createMap();
   unordered_map<string, vector<int>> mapping = createGridMap();
   string playerSelection = getPlayerSelection();
 
   cout << "selection: " << mapping[playerSelection][0] << ", "
        << mapping[playerSelection][1] << '\n';
 
-  displayMap(grid);
+  changeMap(gridMap, getCorrdinates(playerSelection), true);
+  displayMap(gridMap);
   return 0;
 }
