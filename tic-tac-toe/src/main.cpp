@@ -107,12 +107,13 @@ bool checkThreeInRow(vector<vector<char>> gridMap) {
   for (int row = 0; row < gridMap.size(); row++) {
     firstMoveInRow = gridMap[row][0];
     for (int column = 1; column < gridMap.size(); column++) {
-      if (firstMoveInRow != gridMap[row][column]) {
+      if (gridMap[row][column] == ' ' ||
+          firstMoveInRow != gridMap[row][column]) {
         break;
       }
 
       if (firstMoveInRow == gridMap[row][column] &&
-          column == gridMap[row].size()) {
+          column == gridMap[row].size() - 1) {
         return true;
       }
     }
@@ -123,7 +124,7 @@ bool checkThreeInRow(vector<vector<char>> gridMap) {
 
 // Player
 
-string getPlayerSelection(vector<vector<char>> &gridMap) {
+vector<int> getPlayerSelection(vector<vector<char>> &gridMap) {
   string playerSelection;
 
   displayMap(gridMap);
@@ -148,7 +149,7 @@ string getPlayerSelection(vector<vector<char>> &gridMap) {
     }
   }
 
-  return playerSelection;
+  return getCorrdinates(playerSelection);
 }
 
 // CPU
@@ -171,14 +172,19 @@ vector<int> getCpuSelection(vector<vector<char>> &gridMap) {
 int main() {
   bool running = true;
   vector<vector<char>> gridMap = createMap();
-  string playerSelection;
-  vector<int> cpuSelection;
+  vector<int> playerSelection, cpuSelection;
 
   while (running) {
     playerSelection = getPlayerSelection(gridMap);
-    changeMap(gridMap, getCorrdinates(playerSelection), true);
+    changeMap(gridMap, playerSelection, true);
+    if (checkThreeInRow(gridMap)) {
+      running = false;
+    }
     cpuSelection = getCpuSelection(gridMap);
     changeMap(gridMap, cpuSelection, false);
+    if (checkThreeInRow(gridMap)) {
+      running = false;
+    }
   }
   return 0;
 }
