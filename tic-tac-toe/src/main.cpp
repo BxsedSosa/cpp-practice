@@ -68,7 +68,7 @@ vector<string> getHashKeys() {
   return keys;
 }
 
-void displayMap(vector<vector<char>> grid) {
+void displayMap(vector<vector<char>> &grid) {
   for (int i = 0; i < grid.size(); i++) {
     for (int k = 0; k < grid[i].size(); k++) {
       if (k == grid[i].size() - 1) {
@@ -103,7 +103,7 @@ vector<int> getCorrdinates(string playerSelection) {
 
 // Player
 
-string getPlayerSelection(vector<vector<char>> gridMap) {
+string getPlayerSelection(vector<vector<char>> &gridMap) {
   string playerSelection;
 
   displayMap(gridMap);
@@ -135,11 +135,15 @@ string getPlayerSelection(vector<vector<char>> gridMap) {
 
 int getRandomNumber() { return rand() % 8; }
 
-vector<int> getCpuSelection() {
-  int cpuSelection = getRandomNumber();
+vector<int> getCpuSelection(vector<vector<char>> &gridMap) {
   vector<string> gridKeys = getHashKeys();
+  vector<int> cpuSelection = getCorrdinates(gridKeys[getRandomNumber()]);
 
-  return getCorrdinates(gridKeys[cpuSelection]);
+  while (validateUsedSelection(gridMap, cpuSelection)) {
+    cpuSelection = getCorrdinates(gridKeys[getRandomNumber()]);
+  }
+
+  return cpuSelection;
 }
 
 // Main
@@ -153,7 +157,7 @@ int main() {
   while (running) {
     playerSelection = getPlayerSelection(gridMap);
     changeMap(gridMap, getCorrdinates(playerSelection), true);
-    cpuSelection = getCpuSelection();
+    cpuSelection = getCpuSelection(gridMap);
     changeMap(gridMap, cpuSelection, false);
   }
   return 0;
