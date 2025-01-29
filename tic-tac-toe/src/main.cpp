@@ -101,6 +101,26 @@ vector<int> getCorrdinates(string playerSelection) {
   return selectionMap[playerSelection];
 }
 
+bool checkThreeInRow(vector<vector<char>> gridMap) {
+  char firstMoveInRow;
+
+  for (int row = 0; row < gridMap.size(); row++) {
+    firstMoveInRow = gridMap[row][0];
+    for (int column = 1; column < gridMap.size(); column++) {
+      if (firstMoveInRow != gridMap[row][column]) {
+        break;
+      }
+
+      if (firstMoveInRow == gridMap[row][column] &&
+          column == gridMap[row].size()) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 // Player
 
 string getPlayerSelection(vector<vector<char>> &gridMap) {
