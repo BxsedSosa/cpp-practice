@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -10,6 +11,7 @@ using namespace std;
 namespace fs = std::filesystem;
 
 string mainMenu(void) {
+  system("clear");
   string userAnswer;
   cout << "Welcome to To-Do Manager" << '\n';
   cout << '\n' << "1. Create new 'to-do' project" << '\n';
@@ -21,6 +23,7 @@ string mainMenu(void) {
 }
 
 void readFile(string fileName) {
+  system("clear");
   ifstream file(fileName);
   string line;
 
@@ -53,6 +56,7 @@ string getDocumentDirectoryPath() {
 }
 
 string getFile(void) {
+  system("clear");
   string documentPath = getDocumentDirectoryPath();
   string name;
 
@@ -67,6 +71,7 @@ string getFile(void) {
 }
 
 string getProjectName(void) {
+  system("clear");
   string projectName;
   cout << "Creating a new 'to-do' project" << '\n';
   cout << '\n' << "Please enter name of project:" << '\n' << ">> ";
