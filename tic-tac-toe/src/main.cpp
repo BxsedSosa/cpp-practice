@@ -57,6 +57,17 @@ unordered_map<string, vector<int>> createGridMap() {
   return mapping;
 }
 
+vector<string> getHashKeys() {
+  vector<string> keys;
+  unordered_map<string, vector<int>> gridMap = createGridMap();
+
+  for (auto pair : gridMap) {
+    keys.push_back(pair.first);
+  }
+
+  return keys;
+}
+
 void displayMap(vector<vector<char>> grid) {
   for (int i = 0; i < grid.size(); i++) {
     for (int k = 0; k < grid[i].size(); k++) {
@@ -95,18 +106,12 @@ vector<int> getCorrdinates(string playerSelection) {
 string getPlayerSelection(vector<vector<char>> gridMap) {
   string playerSelection;
 
-  clearConsole();
   displayMap(gridMap);
   cout << "Please make a selection between 1 - 9:\n";
   cin >> playerSelection;
 
-  if (playerSelection == "exit") {
-    return playerSelection;
-  }
-
   while (validateUserInput(playerSelection) ||
          validateUsedSelection(gridMap, getCorrdinates(playerSelection))) {
-    clearConsole();
 
     if (validateUserInput(playerSelection)) {
       displayMap(gridMap);
@@ -128,10 +133,13 @@ string getPlayerSelection(vector<vector<char>> gridMap) {
 
 // CPU
 
-vector<int> getCpuSelection() {
-  string cpuSelection;
+int getRandomNumber() { return rand() % 8; }
 
-  return getCorrdinates(cpuSelection);
+vector<int> getCpuSelection() {
+  int cpuSelection = getRandomNumber();
+  vector<string> gridKeys = getHashKeys();
+
+  return getCorrdinates(gridKeys[cpuSelection]);
 }
 
 // Main
@@ -140,11 +148,13 @@ int main() {
   bool running = true;
   vector<vector<char>> gridMap = createMap();
   string playerSelection;
+  vector<int> cpuSelection;
 
   while (running) {
     playerSelection = getPlayerSelection(gridMap);
     changeMap(gridMap, getCorrdinates(playerSelection), true);
+    cpuSelection = getCpuSelection();
+    changeMap(gridMap, cpuSelection, false);
   }
-  clearConsole();
   return 0;
 }
