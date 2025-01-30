@@ -1,9 +1,30 @@
 #include <iostream>
+#include <string>
+#include <unordered_map>
 #include <vector>
 
 int getRandomNumber() {
   srand(time(0));
   return std::rand() % 3;
+}
+
+std::vector<std::string>
+getHashKeys(std::unordered_map<std::string, std::string> hashMap) {
+  std::vector<std::string> keys;
+  for (auto pair : hashMap) {
+    keys.push_back(pair.first);
+  }
+  return keys;
+}
+
+std::unordered_map<std::string, std::string> getWinningCombos() {
+  std::unordered_map<std::string, std::string> winningCombos;
+
+  winningCombos["rock"] = "sisscors";
+  winningCombos["paper"] = "rock";
+  winningCombos["sisscors"] = "paper";
+
+  return winningCombos;
 }
 
 bool validatePlayerInput(std::string playerInput) {
@@ -37,7 +58,6 @@ std::string getPlayerInput() {
 
 std::string getCpuSelection() {
   int randomNum = getRandomNumber();
-  std::cout << "Random number: " << randomNum << '\n';
 
   switch (randomNum) {
   case 0:
@@ -51,13 +71,28 @@ std::string getCpuSelection() {
   return "";
 }
 
-bool determineWinner() { return true; }
+bool determineWinner(std::string playerSelection, std::string cpuSelection) {
+  std::unordered_map<std::string, std::string> winningCombos =
+      getWinningCombos();
+
+  if (cpuSelection == winningCombos[playerSelection]) {
+    return true;
+  }
+
+  return false;
+}
 
 int main() {
   std::string playerInput = getPlayerInput();
   std::string cpuSelection = getCpuSelection();
 
-  std::cout << "Player Input = " << playerInput
-            << " Cpu Input = " << cpuSelection << '\n';
+  if (determineWinner(playerInput, cpuSelection)) {
+    std::cout << "Player Wins!\nPlayer picked: " << playerInput
+              << "\nCpu picked: " << cpuSelection << "\n";
+  } else {
+    std::cout << "Cpu Wins!\nPlayer picked: " << playerInput
+              << "\nCpu picked: " << cpuSelection << "\n";
+  }
+
   return 0;
 }
