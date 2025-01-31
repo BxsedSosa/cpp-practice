@@ -2,7 +2,8 @@
 
 class Player {
 private:
-  int chips = 100;
+  int chips;
+  int maxNumber;
   int bet;
   int guess;
 
@@ -10,6 +11,7 @@ public:
   void setChips(int chips);
   void setGuess(int maxNum);
   void setBet();
+  void setMaxNumber();
 
   int getChips();
   int getBet();

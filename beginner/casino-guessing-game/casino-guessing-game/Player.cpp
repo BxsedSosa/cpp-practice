@@ -1,6 +1,8 @@
 #include "Player.h"
 #include <iostream>
 
+bool validateMaxNumber(int maxNum) { return maxNum < 10; }
+
 bool validatePlayerBet(int chips, int bet) { return bet > chips && bet > 0; }
 
 bool validatePlayerGuess(int guess, int maxNum) {
@@ -39,4 +41,20 @@ void Player::setGuess(int maxNum) {
   }
 
   this->guess = guess;
+}
+
+void Player::setMaxNumber() {
+  int maxNumber;
+
+  std::cout << "Please enter a number at 10 or higher:\n>>> ";
+  std::cin >> maxNumber;
+
+  while (validateMaxNumber(maxNumber)) {
+    std::cout
+        << maxNumber
+        << " is less than 10!\nPlease enter a number at 10 or higher:\n>>> ";
+    std::cin >> maxNumber;
+  }
+
+  this->maxNumber = maxNumber;
 }
