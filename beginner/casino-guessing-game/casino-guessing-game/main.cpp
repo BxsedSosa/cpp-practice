@@ -1,6 +1,11 @@
+#include "Player.h"
 #include <iostream>
 
 int main() {
-  std::cout << "Hello world\n";
+  Player player;
+
+  player.setBet();
+  std::cout << "Player bet: " << player.getBet()
+            << "\nPlayer Chips: " << player.getChips() << '\n';
   return 0;
 }
