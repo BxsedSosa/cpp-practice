@@ -1,12 +1,12 @@
 #pragma once
 
-class Casino {
+class Game {
 private:
   int maxRange;
   int randomNumber;
 
 public:
   void setMaxRange(int maxRange);
-  int getRandomNumber();
-  int givePlayerChips();
+  void setRandomNumber();
+  bool checkIfWinner(int playerNumber);
 };
