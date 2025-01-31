@@ -8,5 +8,6 @@ private:
 public:
   void setMaxRange(int maxRange);
   void setRandomNumber();
-  bool checkIfWinner(int playerNumber);
+
+  int getRandomNumber() { return this->randomNumber; }
 };

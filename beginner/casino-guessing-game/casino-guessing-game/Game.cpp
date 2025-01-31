@@ -7,7 +7,3 @@ void Game::setRandomNumber() {
 }
 
 void Game::setMaxRange(int maxRange) { this->maxRange = maxRange; }
-
-bool Game::checkIfWinner(int playerNumber) {
-  return playerNumber == this->randomNumber;
-}

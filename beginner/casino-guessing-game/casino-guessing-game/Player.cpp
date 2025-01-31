@@ -11,6 +11,10 @@ bool validatePlayerGuess(int guess, int maxNum) {
 
 int Player::getChips() { return this->chips; }
 int Player::getBet() { return this->bet; }
+int Player::getMaxNumber() { return this->maxNumber; }
+int Player::getGuess() { return this->guess; }
+
+void Player::setChips(int chips) { this->chips = chips; }
 
 void Player::setBet() {
   int bet;
