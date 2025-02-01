@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "../mongo-cred.cpp"
+#include "Credentials.h"
 
 int main() {
-  extern credentials;
+  Credentials credentials;
 
-  std::cout << credentials.name << '\n';
+  std::cout << credentials.getUser() << '\n';
   std::cout << "hello world'\n";
 
   return 0;
