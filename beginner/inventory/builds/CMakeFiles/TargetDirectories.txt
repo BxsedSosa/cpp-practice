@@ -1,0 +1,4 @@
+/Users/x/Workspace/cpp-practice/beginner/inventory/builds/CMakeFiles/includes.dir
+/Users/x/Workspace/cpp-practice/beginner/inventory/builds/CMakeFiles/Inventory.dir
+/Users/x/Workspace/cpp-practice/beginner/inventory/builds/CMakeFiles/edit_cache.dir
+/Users/x/Workspace/cpp-practice/beginner/inventory/builds/CMakeFiles/rebuild_cache.dir
