@@ -784,10 +784,10 @@ CMakeFiles/Inventory.dir/src/main.cpp.o: /Users/x/Workspace/cpp-practice/beginne
   /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stdarg.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stdint.h \
-  /Users/x/Workspace/cpp-practice/beginner/inventory/includes/Item.h
+  /Users/x/Workspace/cpp-practice/beginner/inventory/includes/Database.h
 
 
-/Users/x/Workspace/cpp-practice/beginner/inventory/includes/Item.h:
+/Users/x/Workspace/cpp-practice/beginner/inventory/includes/Database.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stddef.h:
 

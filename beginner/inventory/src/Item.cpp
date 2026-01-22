@@ -1,13 +1,20 @@
 #include "../includes/Item.h"
+#include <cstdlib>
+#include <iostream>
 #include <string>
 
-Item::Item(int id, std::string name, int quantity, double price) {
-  this->id = id;
-  this->name = name;
-  this->quantity = quantity;
-  this->price = price;
+void Item::createItem() {
+  std::cout << "Enter a item ID: ";
+  std::cin >> this->id;
+  std::cout << "Enter a item name: ";
+  std::cin >> this->name;
+  std::cout << "Enter a item quantity: ";
+  std::cin >> this->quantity;
+  std::cout << "Enter a item price: ";
+  std::cin >> this->price;
 };
 
-std::string Item::get_name(int id) { return this->name; }
-int Item::get_quantity(int id) { return this->quantity; }
-int Item::get_price(int id) { return this->price; }
+int Item::getId() { return this->id; }
+int Item::getQuantity() { return this->quantity; }
+int Item::getPrice() { return this->price; }
+std::string Item::getName() { return this->name; }

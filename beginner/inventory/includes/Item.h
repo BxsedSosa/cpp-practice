@@ -10,8 +10,9 @@ private:
   double price;
 
 public:
-  Item(int, std::string, int, double);
-  std::string get_name(int);
-  int get_quantity(int);
-  int get_price(int);
+  void createItem();
+  int getId();
+  std::string getName();
+  int getQuantity();
+  int getPrice();
 };
