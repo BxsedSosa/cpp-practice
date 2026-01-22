@@ -6,10 +6,10 @@
 
 class Database {
 private:
-  sqlite3 *db;
   int exit;
 
 public:
+  sqlite3 *db;
   std::string retrieveTableName();
   void createNewTable(std::string);
 };

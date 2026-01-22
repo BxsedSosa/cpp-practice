@@ -1,4 +1,5 @@
 #include "../includes/Database.h"
+#include <sqlite3.h>
 
 std::string Database::retrieveTableName() {
   std::string tableName;

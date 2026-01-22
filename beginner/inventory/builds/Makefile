@@ -149,6 +149,30 @@ Inventory/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Inventory.dir/build.make CMakeFiles/Inventory.dir/build
 .PHONY : Inventory/fast
 
+src/Database.o: src/Database.cpp.o
+.PHONY : src/Database.o
+
+# target to build an object file
+src/Database.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/includes.dir/build.make CMakeFiles/includes.dir/src/Database.cpp.o
+.PHONY : src/Database.cpp.o
+
+src/Database.i: src/Database.cpp.i
+.PHONY : src/Database.i
+
+# target to preprocess a source file
+src/Database.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/includes.dir/build.make CMakeFiles/includes.dir/src/Database.cpp.i
+.PHONY : src/Database.cpp.i
+
+src/Database.s: src/Database.cpp.s
+.PHONY : src/Database.s
+
+# target to generate assembly for a file
+src/Database.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/includes.dir/build.make CMakeFiles/includes.dir/src/Database.cpp.s
+.PHONY : src/Database.cpp.s
+
 src/Item.o: src/Item.cpp.o
 .PHONY : src/Item.o
 
@@ -208,6 +232,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Inventory"
 	@echo "... includes"
+	@echo "... src/Database.o"
+	@echo "... src/Database.i"
+	@echo "... src/Database.s"
 	@echo "... src/Item.o"
 	@echo "... src/Item.i"
 	@echo "... src/Item.s"

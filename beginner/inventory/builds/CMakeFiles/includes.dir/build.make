@@ -86,17 +86,33 @@ CMakeFiles/includes.dir/src/Item.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/includes.dir/src/Item.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/x/Workspace/cpp-practice/beginner/inventory/src/Item.cpp -o CMakeFiles/includes.dir/src/Item.cpp.s
 
+CMakeFiles/includes.dir/src/Database.cpp.o: CMakeFiles/includes.dir/flags.make
+CMakeFiles/includes.dir/src/Database.cpp.o: /Users/x/Workspace/cpp-practice/beginner/inventory/src/Database.cpp
+CMakeFiles/includes.dir/src/Database.cpp.o: CMakeFiles/includes.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/x/Workspace/cpp-practice/beginner/inventory/builds/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/includes.dir/src/Database.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/includes.dir/src/Database.cpp.o -MF CMakeFiles/includes.dir/src/Database.cpp.o.d -o CMakeFiles/includes.dir/src/Database.cpp.o -c /Users/x/Workspace/cpp-practice/beginner/inventory/src/Database.cpp
+
+CMakeFiles/includes.dir/src/Database.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/includes.dir/src/Database.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/x/Workspace/cpp-practice/beginner/inventory/src/Database.cpp > CMakeFiles/includes.dir/src/Database.cpp.i
+
+CMakeFiles/includes.dir/src/Database.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/includes.dir/src/Database.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/x/Workspace/cpp-practice/beginner/inventory/src/Database.cpp -o CMakeFiles/includes.dir/src/Database.cpp.s
+
 # Object files for target includes
 includes_OBJECTS = \
-"CMakeFiles/includes.dir/src/Item.cpp.o"
+"CMakeFiles/includes.dir/src/Item.cpp.o" \
+"CMakeFiles/includes.dir/src/Database.cpp.o"
 
 # External object files for target includes
 includes_EXTERNAL_OBJECTS =
 
 libincludes.a: CMakeFiles/includes.dir/src/Item.cpp.o
+libincludes.a: CMakeFiles/includes.dir/src/Database.cpp.o
 libincludes.a: CMakeFiles/includes.dir/build.make
 libincludes.a: CMakeFiles/includes.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/x/Workspace/cpp-practice/beginner/inventory/builds/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libincludes.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/x/Workspace/cpp-practice/beginner/inventory/builds/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libincludes.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/includes.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/includes.dir/link.txt --verbose=$(VERBOSE)
 

@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/x/Workspace/cpp-practice/beginner/inventory/src/Database.cpp" "CMakeFiles/includes.dir/src/Database.cpp.o" "gcc" "CMakeFiles/includes.dir/src/Database.cpp.o.d"
   "/Users/x/Workspace/cpp-practice/beginner/inventory/src/Item.cpp" "CMakeFiles/includes.dir/src/Item.cpp.o" "gcc" "CMakeFiles/includes.dir/src/Item.cpp.o.d"
   )
 

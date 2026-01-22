@@ -1,2 +1,2 @@
-/usr/bin/ar qc libincludes.a CMakeFiles/includes.dir/src/Item.cpp.o
+/usr/bin/ar qc libincludes.a CMakeFiles/includes.dir/src/Item.cpp.o CMakeFiles/includes.dir/src/Database.cpp.o
 /usr/bin/ranlib libincludes.a
