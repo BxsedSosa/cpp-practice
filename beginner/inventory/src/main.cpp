@@ -22,6 +22,10 @@ int main() {
       inventory.createNewTable();
     } else if (user_input == "2") {
       inventory.insertNewData();
+    } else if (user_input == "3") {
+      inventory.displayTable();
+    } else if (user_input == "4") {
+      inventory.deleteRow();
     } else if (user_input == "0") {
       break;
     } else {

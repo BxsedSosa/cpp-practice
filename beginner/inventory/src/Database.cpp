@@ -1,15 +1,35 @@
 #include "../includes/Database.h"
 #include "../includes/Item.h"
+#include <cstddef>
 #include <cstdlib>
 #include <sqlite3.h>
 #include <string>
 
-std::string Database::retrieveTableName() {
+static int callback(void *data, int argc, char **argv, char **azColName) {
+
+  for (int i = 0; i < argc; i++) {
+    std::string value = argv[i] ? argv[i] : "NULL";
+    std::cout << azColName[i] << " = " << value << '\n';
+  }
+  std::cout << '\n';
+
+  return 0;
+}
+
+std::string retrieveTableName() {
   std::string tableName;
   system("cls || clear");
   std::cout << "Enter Table name: ";
   std::cin >> tableName;
   return tableName;
+}
+
+std::string retrieveId() {
+  std::string id;
+  system("cls || clear");
+  std::cout << "Enter ID: ";
+  std::cin >> id;
+  return id;
 }
 
 void Database::createNewTable() {
@@ -42,9 +62,34 @@ void Database::insertNewData() {
                   std::to_string(item.getPrice()) + "');");
 
   this->status = sqlite3_exec(this->db, sql.c_str(), NULL, 0, &errMsg);
+
   if (this->status != SQLITE_OK) {
     std::cerr << "Error Insert" << std::endl;
     sqlite3_free(errMsg);
   } else
     std::cout << "Records created Successfully!" << std::endl;
+}
+
+void Database::displayTable() {
+  std::string tableName = retrieveTableName();
+  std::string selectAll = "SELECT * FROM " + tableName;
+  std::cout << "\nTable: " << tableName << '\n';
+  sqlite3_exec(this->db, selectAll.c_str(), callback, NULL, NULL);
+}
+
+void Database::deleteRow() {
+  char *messErr;
+  std::string tableName = retrieveTableName();
+  std::string id = retrieveId();
+  std::string deleteDataQuery = "DELETE FROM " + tableName + " WHERE ID =" + id;
+
+  this->status =
+      sqlite3_exec(this->db, deleteDataQuery.c_str(), NULL, NULL, &messErr);
+
+  if (this->status != SQLITE_OK) {
+    std::cerr << "Error DELETE" << std::endl;
+    sqlite3_free(messErr);
+  } else {
+    std::cout << "Record deleted Successfully!" << std::endl;
+  }
 }
