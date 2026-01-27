@@ -12,4 +12,5 @@ public:
   fs::path getPath();
   void setPath(fs::path);
   void showPath();
+  void showFilesInDir();
 };
