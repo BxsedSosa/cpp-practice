@@ -1,0 +1,12 @@
+.html
+.css
+.cpp
+.c
+.rar
+.7z
+.zip
+.txt
+.exe
+.jpg
+.png
+.gif

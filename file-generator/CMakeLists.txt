@@ -3,6 +3,7 @@ project(FileGenerator)
 
 add_library(includes
   src/Reader.cpp
+  src/Maker.cpp
 )
 
 target_include_directories(includes

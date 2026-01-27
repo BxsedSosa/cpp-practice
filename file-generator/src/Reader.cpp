@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 
 void Reader::getExtensions() {
   std::ifstream f("file-extensions.txt");
@@ -22,4 +23,8 @@ void Reader::showExtensions() {
   for (int i = 0; i < this->extensions.size(); i++) {
     std::cout << extensions[i] << '\n';
   }
+}
+
+std::vector<std::string> Reader::retrieveExtensions() {
+  return this->extensions;
 }

@@ -10,4 +10,5 @@ private:
 public:
   void getExtensions();
   void showExtensions();
+  std::vector<std::string> retrieveExtensions();
 };
