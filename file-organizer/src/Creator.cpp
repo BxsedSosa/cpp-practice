@@ -18,10 +18,17 @@ std::filesystem::path getDocPath() {
     }
   }
 
-  return currPath;
+  return currPath + "Documents/";
 }
 
-Creator::Creator() { this->docPath = getDocPath().string() + "Documents/"; }
+Creator::Creator() {
+  this->docPath = getDocPath();
+  createSavedExtsFile();
+  setSavedExt();
+}
+
+std::vector<std::string> Creator::getExts() { return this->dirExts; }
+std::vector<std::string> Creator::getSavedExts() { return this->savedExts; }
 
 void Creator::setExts(std::filesystem::path path) {
   for (auto dir_entry : std::filesystem::directory_iterator(path)) {
@@ -30,39 +37,51 @@ void Creator::setExts(std::filesystem::path path) {
   }
 }
 
-std::vector<std::string> Creator::getExts() { return this->dirExts; }
-
 void Creator::showExts() {
   for (auto ext : this->dirExts) {
     std::cout << "Extension: " << ext << '\n';
   }
 }
 
-std::vector<std::string> Creator::getSavedExts() {
-  std::vector<std::string> savedExts;
+void Creator::setSavedExt() {
+  std::filesystem::path docFile = this->docPath.string() + this->fileName;
+  std::string ext;
 
-  return savedExts;
+  if (std::filesystem::exists(docFile)) {
+    std::ifstream file(docFile);
+
+    if (!file.is_open()) {
+      std::cerr << "Error opening the file!";
+      return;
+    }
+
+    while (std::getline(file, ext)) {
+      this->savedExts.push_back(ext);
+    }
+
+    file.close();
+  }
 }
 
-void Creator::setSavedExt() {}
-
 void Creator::createSavedExtsFile() {
+  std::filesystem::path docFile = this->docPath.string() + this->fileName;
   std::ofstream file;
-  file.open(this->fileName);
+  if (!std::filesystem::exists(docFile)) {
+    file.open(this->fileName);
 
-  if (!file.is_open()) {
-    std::cout << "Error creating " << this->fileName << '\n';
-    return;
-  }
+    if (!file.is_open()) {
+      std::cout << "Error creating " << this->fileName << '\n';
+      return;
+    }
 
-  std::cout << "Created " << this->fileName << " Successfully\n";
-  file.close();
+    std::cout << "Successfully created txt file!\n";
+    file.close();
 
-  try {
-    std::filesystem::rename(this->fileName,
-                            this->docPath.string() + this->fileName);
-  } catch (std::filesystem::filesystem_error &e) {
-    std::cout << e.what() << '\n';
+    try {
+      std::filesystem::rename(this->fileName, docFile);
+    } catch (std::filesystem::filesystem_error &e) {
+      std::cout << e.what() << '\n';
+    }
   }
 }
 
