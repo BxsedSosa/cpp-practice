@@ -5,10 +5,18 @@
 
 class Creator {
 private:
-  std::vector<std::string> extensions;
+  std::string fileName = "saved_extension.txt";
+  std::filesystem::path docPath;
+  std::vector<std::string> savedExts;
+  std::vector<std::string> dirExts;
 
 public:
-  void setExtensions(std::filesystem::path);
-  std::vector<std::string> getExtensions();
-  void showExtensions();
+  Creator();
+  void setExts(std::filesystem::path);
+  void setSavedExt();
+  std::vector<std::string> getSavedExts();
+  std::vector<std::string> getExts();
+  void showExts();
+  void createSavedExtsFile();
+  bool isSavedExtFileCreated();
 };
