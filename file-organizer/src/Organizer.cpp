@@ -15,14 +15,15 @@ void Organizer::showPath() {
   std::cout << "Current Path: " << this->path << '\n';
 }
 
-void Organizer::showFilesInDir() {
+std::vector<std::string> Organizer::getFileNames() {
+  std::vector<std::string> fileNames;
   for (auto dirEntry :
        std::filesystem::directory_iterator(this->downloadPath)) {
-    std::string ext = dirEntry.path().filename().extension();
     std::string fileName = dirEntry.path().filename();
-
-    std::cout << "File: " << fileName << "\nExtension: " << ext << '\n';
+    fileNames.push_back(fileName);
   }
+
+  return fileNames;
 }
 
 std::vector<std::string> Organizer::getExtsInDir() {
@@ -38,8 +39,5 @@ std::vector<std::string> Organizer::getExtsInDir() {
     }
   }
 
-  for (auto ext : dirExts) {
-    std::cout << "DOWN EXT: " << ext << '\n';
-  }
   return dirExts;
 }

@@ -13,6 +13,6 @@ public:
   void setDownloadPath(std::filesystem::path);
   void setPath(std::filesystem::path);
   void showPath();
-  void showFilesInDir();
+  std::vector<std::string> getFileNames();
   std::vector<std::string> getExtsInDir();
 };

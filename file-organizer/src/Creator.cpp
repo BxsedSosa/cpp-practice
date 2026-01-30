@@ -117,5 +117,14 @@ void Creator::createExtFolder() {
   for (auto ext : this->dirExts) {
     std::string dirName = ext;
     dirName.erase(0, 1);
+    if (!std::filesystem::exists(dirName)) {
+      if (dirName != " ") {
+        std::filesystem::create_directories(this->downloadPath.string() +
+                                            dirName);
+      } else {
+        std::filesystem::create_directories(this->downloadPath.string() +
+                                            "Folder");
+      }
+    }
   }
 }

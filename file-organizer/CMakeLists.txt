@@ -4,6 +4,7 @@ project(Filer)
 add_library(includes
   src/Organizer.cpp
   src/Creator.cpp
+  src/Filer.cpp
 )
 
 target_include_directories(includes
