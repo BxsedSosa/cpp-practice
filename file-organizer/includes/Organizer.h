@@ -2,15 +2,17 @@
 
 #include <filesystem>
 
-namespace fs = std::filesystem;
-
 class Organizer {
 private:
-  fs::path path;
+  std::filesystem::path path;
+  std::filesystem::path downloadPath;
 
 public:
-  fs::path getPath();
-  void setPath(fs::path);
+  Organizer();
+  std::filesystem::path getPath();
+  void setDownloadPath(std::filesystem::path);
+  void setPath(std::filesystem::path);
   void showPath();
   void showFilesInDir();
+  std::vector<std::string> getExtsInDir();
 };

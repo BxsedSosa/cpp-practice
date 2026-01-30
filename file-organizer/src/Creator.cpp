@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-std::filesystem::path getDocPath() {
+std::filesystem::path getRootPath() {
   int count = 0;
   std::string currPath = std::filesystem::current_path();
 
@@ -18,17 +18,24 @@ std::filesystem::path getDocPath() {
     }
   }
 
-  return currPath + "Documents/";
+  return currPath;
 }
 
 Creator::Creator() {
-  this->docPath = getDocPath();
+  this->startingPath = getRootPath();
+  this->docPath = this->startingPath.string() + "Documents/";
+  this->downloadPath = this->startingPath.string() + "Downloads/";
   createSavedExtsFile();
-  setSavedExt();
+  setSavedExts();
 }
 
 std::vector<std::string> Creator::getExts() { return this->dirExts; }
 std::vector<std::string> Creator::getSavedExts() { return this->savedExts; }
+std::filesystem::path Creator::getDownloadPath() { return this->downloadPath; }
+
+void Creator::setDirExts(std::vector<std::string> dirExts) {
+  this->dirExts = dirExts;
+}
 
 void Creator::setExts(std::filesystem::path path) {
   for (auto dir_entry : std::filesystem::directory_iterator(path)) {
@@ -43,7 +50,28 @@ void Creator::showExts() {
   }
 }
 
-void Creator::setSavedExt() {
+void Creator::writeSavedExts() {
+  std::filesystem::path docFile = this->docPath.string() + this->fileName;
+  std::ofstream outputfile(docFile, std::ios::app);
+
+  if (!outputfile) {
+    std::cerr << "Failed to open text file!\n";
+    return;
+  }
+
+  for (std::string ext : this->dirExts) {
+    auto doesExists =
+        std::find(this->savedExts.begin(), this->savedExts.end(), ext);
+    if (doesExists != this->savedExts.end()) {
+      continue;
+    }
+    outputfile << ext << '\n';
+  }
+
+  outputfile.close();
+}
+
+void Creator::setSavedExts() {
   std::filesystem::path docFile = this->docPath.string() + this->fileName;
   std::string ext;
 
@@ -85,4 +113,9 @@ void Creator::createSavedExtsFile() {
   }
 }
 
-// bool Creator::isSavedExtFileCreated() {}
+void Creator::createExtFolder() {
+  for (auto ext : this->dirExts) {
+    std::string dirName = ext;
+    dirName.erase(0, 1);
+  }
+}
