@@ -1,0 +1,1 @@
+/usr/sbin/c++ -Wl,--dependency-file=CMakeFiles/Blackjack.dir/link.d CMakeFiles/Blackjack.dir/src/main.cpp.o -o Blackjack  libincludes.a

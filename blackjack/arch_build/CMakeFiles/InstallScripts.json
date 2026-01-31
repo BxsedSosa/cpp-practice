@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/x/workspace/c-projects/blackjack/arch_build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

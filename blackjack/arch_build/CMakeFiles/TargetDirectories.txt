@@ -1,0 +1,4 @@
+/home/x/workspace/c-projects/blackjack/arch_build/CMakeFiles/includes.dir
+/home/x/workspace/c-projects/blackjack/arch_build/CMakeFiles/Blackjack.dir
+/home/x/workspace/c-projects/blackjack/arch_build/CMakeFiles/edit_cache.dir
+/home/x/workspace/c-projects/blackjack/arch_build/CMakeFiles/rebuild_cache.dir

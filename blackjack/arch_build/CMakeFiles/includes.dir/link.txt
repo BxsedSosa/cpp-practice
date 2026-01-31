@@ -1,0 +1,2 @@
+/usr/sbin/ar qc libincludes.a CMakeFiles/includes.dir/src/Card.cpp.o CMakeFiles/includes.dir/src/Deck.cpp.o CMakeFiles/includes.dir/src/Player.cpp.o CMakeFiles/includes.dir/src/Dealer.cpp.o CMakeFiles/includes.dir/src/Hand.cpp.o
+/usr/sbin/ranlib libincludes.a
