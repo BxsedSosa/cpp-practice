@@ -12,7 +12,7 @@ int main() {
   SetTargetFPS(60);
 
   while (!WindowShouldClose()) {
-    circle.gravity(floor);
+    circle.drag();
 
     BeginDrawing();
     ClearBackground(WHITE);

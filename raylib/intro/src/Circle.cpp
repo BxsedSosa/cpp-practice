@@ -75,5 +75,4 @@ void Circle::gravity(Square floor) {
   /*
    * if ball is not on the ground, hit needs to fall 1 px at a time
    */
-  double gravity = 6.674;
 }
