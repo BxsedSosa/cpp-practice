@@ -1,12 +1,15 @@
 #pragma once
 
-#include "raylib.h"
+#include "Square.h"
+#include <raylib.h>
+
 class Circle {
   private:
     Vector2 coors;
     float radius;
     float xSpeed;
     float ySpeed;
+    int mass;
 
   public:
     Circle(float, float, float);
@@ -22,5 +25,6 @@ class Circle {
     void outOfBounds();
     void bounce();
     bool isMouseInCircle();
+    void gravity(Square);
 };
 

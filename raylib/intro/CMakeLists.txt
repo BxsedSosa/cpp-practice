@@ -3,6 +3,7 @@ project(Ray)
 
 add_library(includes 
   src/Circle.cpp
+  src/Square.cpp
 )
 
 target_include_directories(includes

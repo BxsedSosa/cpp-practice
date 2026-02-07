@@ -1,6 +1,7 @@
-#include "../includes/Circle.h"
-#include <iostream>
 #include <raylib.h>
+
+#include "../includes/Circle.h"
+#include "../includes/Square.h"
 
 // #define UP_KEY 265
 // #define DOWN_KEY 264
@@ -19,6 +20,7 @@ Circle::Circle(float xCor, float yCor, float radius) {
   this->radius = radius;
   this->xSpeed = 2.0f;
   this->ySpeed = 2.0f;
+  this->mass = 100;
   setxCor(xCor);
   setyCor(yCor);
 }
@@ -33,10 +35,6 @@ void Circle::setyCor(float yCor) { this->coors.y = yCor; }
 void Circle::setRadius(float radius) { this->radius = radius; }
 
 void Circle::drag() {
-  /*
-   * Mouse pos needs to be within the Circle pos
-   */
-
   if (isMouseInCircle()) {
     Vector2 mousePos = GetMousePosition();
     this->coors.x = mousePos.x;
@@ -71,4 +69,11 @@ bool Circle::isMouseInCircle() {
                     mousePos.x < this->coors.x + this->radius;
 
   return IsMouseButtonDown(MOUSE_BUTTON_LEFT) && (withinXpos && withinYpos);
+}
+
+void Circle::gravity(Square floor) {
+  /*
+   * if ball is not on the ground, hit needs to fall 1 px at a time
+   */
+  double gravity = 6.674;
 }
